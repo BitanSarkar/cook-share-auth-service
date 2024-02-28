@@ -1,0 +1,17 @@
+server:
+  port: 8081 # Set the server port to 8081
+
+spring:
+  data:
+    mongodb:
+      uri: ${MONGODB_URL}
+
+cognito:
+  userPoolId: ${COGNITO_POOL_ID}
+  clientId: ${COGNITO_CLIENT_ID}
+  client-secret: ${COGNITO_CLIENT_SECRET}
+
+logging:
+  level:
+    org.springframework.web: INFO
+    com.bitsar.cookshareauthservice: DEBUG
