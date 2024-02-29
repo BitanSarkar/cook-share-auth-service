@@ -23,4 +23,12 @@ public class UserSessionDao {
     public void updateSession(UserSession userSession) {
         userSessionRepository.save(userSession);
     }
+
+    public UserSession findByPhoneNumber(String phoneNumber) {
+        return userSessionRepository.findByPhoneNumber(phoneNumber);
+    }
+
+    public void deleteByPhoneNumber(String phoneNumber) {
+        userSessionRepository.deleteAllByPhoneNumber(phoneNumber);
+    }
 }

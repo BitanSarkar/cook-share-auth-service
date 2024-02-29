@@ -10,4 +10,6 @@ public interface UserSessionRepository extends MongoRepository<UserSession, Stri
     boolean existsByPhoneNumber(String phoneNumber);
 
     void deleteAllByPhoneNumber(String phoneNumber);
+
+    UserSession findByPhoneNumber(String phoneNumber);
 }

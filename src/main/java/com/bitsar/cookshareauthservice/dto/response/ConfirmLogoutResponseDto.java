@@ -7,9 +7,6 @@ import lombok.Data;
 @Data
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ConfirmLoginResponseDto {
+public class ConfirmLogoutResponseDto {
     private String status;
-    private String accessToken;
-    private String firstName;
-    private String lastName;
 }

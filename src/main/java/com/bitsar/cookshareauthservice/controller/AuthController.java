@@ -3,11 +3,9 @@ package com.bitsar.cookshareauthservice.controller;
 import com.bitsar.cookshareauthservice.dto.ResponseWrap;
 import com.bitsar.cookshareauthservice.dto.request.ConfirmRegisterRequestDto;
 import com.bitsar.cookshareauthservice.dto.request.RegisterRequestDto;
-import com.bitsar.cookshareauthservice.dto.response.ConfirmLoginResponseDto;
-import com.bitsar.cookshareauthservice.dto.response.ConfirmRegisterResponseDto;
-import com.bitsar.cookshareauthservice.dto.response.LoginResponseDto;
-import com.bitsar.cookshareauthservice.dto.response.RegisterResponseDto;
+import com.bitsar.cookshareauthservice.dto.response.*;
 import com.bitsar.cookshareauthservice.service.AuthService;
+import com.bitsar.cookshareauthservice.util.JwtUtil;
 import com.bitsar.cookshareauthservice.util.ResponseBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -38,5 +36,14 @@ public class AuthController {
     @GetMapping("/confirm-login")
     public ResponseEntity<ResponseWrap<ConfirmLoginResponseDto>> confirmLogin(@RequestParam String sessionId, @RequestParam String otp) {
         return ResponseBuilder.getSuccessfulResponse(authService.confirmSignIn(sessionId, otp));
+    }
+    @GetMapping("/refresh-token")
+    public ResponseEntity<ResponseWrap<ConfirmLoginResponseDto>> refreshToken(@RequestHeader("Authorization") String accessToken) {
+        String cognitoUserName = JwtUtil.getUsernameFromToken(accessToken);
+        return ResponseBuilder.getSuccessfulResponse(authService.refreshToken(cognitoUserName));
+    }
+    @GetMapping("/logout")
+    public ResponseEntity<ResponseWrap<ConfirmLogoutResponseDto>> logout(@RequestHeader("Authorization") String accessToken) {
+        return ResponseBuilder.getSuccessfulResponse(authService.logout(accessToken.replace("Bearer", "").trim(), JwtUtil.getUsernameFromToken(accessToken)));
     }
 }

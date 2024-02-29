@@ -137,6 +137,32 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     /**
+     * Handles TokenParseException and returns a failure response with the error message and error code.
+     *
+     * @param ex the TokenParseException
+     * @param request the WebRequest
+     * @return ResponseEntity containing the failure response
+     */
+    @ExceptionHandler({TokenParseException.class})
+    public ResponseEntity<ResponseWrap<Object>> handleAllBadRequest(final TokenParseException ex, final WebRequest request) {
+        logError(ex);
+        return ResponseBuilder.getFailureResponse(ex.getMessage(), 9);
+    }
+
+    /**
+     * Handles IdleTimeExpiredException and returns a failure response with a message and code 10.
+     *
+     * @param ex       the IdleTimeExpiredException
+     * @param request  the WebRequest
+     * @return a ResponseEntity with the failure response
+     */
+    @ExceptionHandler({IdleTimeExpiredException.class})
+    public ResponseEntity<ResponseWrap<Object>> handleAllBadRequest(final IdleTimeExpiredException ex, final WebRequest request) {
+        logError(ex);
+        return ResponseBuilder.getFailureResponse(ex.getMessage(), 10);
+    }
+
+    /**
      * Logs the error and its location in the code.
      *
      * @param ex the exception to be logged

@@ -7,9 +7,15 @@ spring:
       uri: ${MONGODB_URL}
 
 cognito:
-  userPoolId: ${COGNITO_POOL_ID}
   clientId: ${COGNITO_CLIENT_ID}
   client-secret: ${COGNITO_CLIENT_SECRET}
+
+idle:
+  timeout:
+    day: 3
+    hour: 12
+    minute: 0
+    second: 0
 
 logging:
   level:

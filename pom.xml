@@ -46,7 +46,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk -->
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>3.18.2</version> <!-- Use the latest version -->
+        </dependency>
         <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-java-sdk</artifactId>
