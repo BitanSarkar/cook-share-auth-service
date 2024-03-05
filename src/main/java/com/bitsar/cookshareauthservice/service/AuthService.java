@@ -130,7 +130,7 @@ public class AuthService {
      * @param phoneNumber the phone number to sign in with
      * @return a response indicating the status of the login and the session ID
      * @throws InvalidPhoneNumberFormatException if the phone number does not match the expected format
-     * @throws NotAuthorizedToLoginException     if the user is not authorized to login
+     * @throws NotAuthorizedToLoginException     if the user is not authorized to log in
      */
     public LoginResponseDto signIn(String phoneNumber) {
         // Validate phone number format
@@ -247,15 +247,23 @@ public class AuthService {
     }
 
     /**
-     * Logs out the user by deleting the user session and performing a global sign out from Cognito.
+     * Logs out the user by deleting the user session and performing a global sign-out from Cognito.
      *
      * @param accessToken the access token of the user
      * @param cognitoUserName the Cognito username of the user
      * @return ConfirmLogoutResponseDto with the status of the logout operation
      */
     public ConfirmLogoutResponseDto logout(String accessToken, String cognitoUserName) {
+
+        // Retrieve user and user session from the database
+        User user = userDao.findByCognitoUserName(cognitoUserName);
+        UserSession userSession = userSessionDao.findByPhoneNumber(user.getPhoneNumber());
+
+        // Check if the user session exists
+        if (Objects.isNull(userSession)) throw new UserAlreadyLoggedOutException("User already logged out!");
+
         // Delete the user session by phone number
-        userSessionDao.deleteByPhoneNumber(userDao.findByCognitoUserName(cognitoUserName).getPhoneNumber());
+        userSessionDao.deleteByPhoneNumber(user.getPhoneNumber());
 
         // Perform global sign out from Cognito
         cognitoHelper.cognitoGlobalSignOut(accessToken);
