@@ -12,7 +12,7 @@ public class CognitoConfig {
     @Bean
     public AWSCognitoIdentityProvider cognitoClient() {
         return AWSCognitoIdentityProviderClientBuilder.standard()
-                .withRegion(Regions.AP_SOUTH_1)
+                .withRegion(Regions.US_EAST_1)
                 .build();
     }
 }

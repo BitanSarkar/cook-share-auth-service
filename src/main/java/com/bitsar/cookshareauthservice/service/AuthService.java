@@ -213,6 +213,10 @@ public class AuthService {
         User user = userDao.findByCognitoUserName(cognitoUserName);
         UserSession userSession = userSessionDao.findByPhoneNumber(user.getPhoneNumber());
 
+        if (Objects.isNull(userSession)) {
+            throw new UserAlreadyLoggedOutException("User already logged out!");
+        }
+
         // Check if the session has expired
         LocalDateTime currentLocalDateTime = LocalDateTime.now();
         if (userSession.getTimeStamp().plusDays(idleTimeoutDay).plusHours(idleTimeoutHour)

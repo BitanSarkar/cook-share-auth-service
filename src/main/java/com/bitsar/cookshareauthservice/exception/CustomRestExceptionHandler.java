@@ -163,6 +163,19 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     /**
+     * Handle UserAlreadyLoggedOutException and return a failure response.
+     *
+     * @param ex the UserAlreadyLoggedOutException
+     * @param request the WebRequest
+     * @return a ResponseEntity containing a failure response
+     */
+    @ExceptionHandler({UserAlreadyLoggedOutException.class})
+    public ResponseEntity<ResponseWrap<Object>> handleAllBadRequest(final UserAlreadyLoggedOutException ex, final WebRequest request) {
+        logError(ex);
+        return ResponseBuilder.getFailureResponse(ex.getMessage(), 11);
+    }
+
+    /**
      * Logs the error and its location in the code.
      *
      * @param ex the exception to be logged
