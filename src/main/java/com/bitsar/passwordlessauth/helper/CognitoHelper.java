@@ -16,7 +16,6 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.bitsar.passwordlessauth.constants.AuthConstants.GLOBAL_PASSWORD;
 import static com.bitsar.passwordlessauth.constants.AuthConstants.HMAC_SHA256_ALGORITHM;
 
 @Slf4j
@@ -29,6 +28,8 @@ public class CognitoHelper {
     private String clientId;
     @Value("${cognito.client-secret}")
     private String clientSecret;
+    @Value("${cognito.global-password}")
+    private String globalPassword;
 
     /**
      * Signs up a user in Cognito using the specified country code and phone number.
@@ -46,7 +47,7 @@ public class CognitoHelper {
                 .withClientId(clientId)
                 .withSecretHash(calculateSecretHash(username))
                 .withUsername(username)
-                .withPassword(GLOBAL_PASSWORD)
+                .withPassword(globalPassword)
                 .withUserAttributes(
                         new AttributeType()
                                 .withName("phone_number")
@@ -99,7 +100,7 @@ public class CognitoHelper {
         // Set up authentication parameters
         Map<String, String> authParams = new HashMap<>();
         authParams.put("USERNAME", phoneNumber);
-        authParams.put("PASSWORD", GLOBAL_PASSWORD); // Replace GLOBAL_PASSWORD with the actual global password
+        authParams.put("PASSWORD", globalPassword); // Replace GLOBAL_PASSWORD with the actual global password
         authParams.put(AuthConstants.SECRET_HASH_ATTRIBUTE, calculateSecretHash(phoneNumber));
 
         // Set up the authentication request
