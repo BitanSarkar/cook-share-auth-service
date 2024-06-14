@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CookShareAuthServiceApplication {
+public class PasswordLessAuthServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CookShareAuthServiceApplication.class, args);
+        SpringApplication.run(PasswordLessAuthServiceApplication.class, args);
     }
 
 }
