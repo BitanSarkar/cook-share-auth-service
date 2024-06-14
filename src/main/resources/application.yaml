@@ -20,4 +20,4 @@ idle:
 logging:
   level:
     org.springframework.web: INFO
-    com.bitsar.cookshareauthservice: DEBUG
+    com.bitsar.passwordlessauth: DEBUG

@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.bitsar</groupId>
-    <artifactId>cook-share-auth-service</artifactId>
+    <artifactId>passwordless-auth-service</artifactId>
     <version>0.0.1</version>
-    <name>cook-share-auth-service</name>
+    <name>passwordless-auth-service</name>
     <description>Authentication service for cook share</description>
     <properties>
         <java.version>17</java.version>

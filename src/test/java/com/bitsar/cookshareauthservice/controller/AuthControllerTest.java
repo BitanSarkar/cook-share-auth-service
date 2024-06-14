@@ -1,14 +1,14 @@
-package com.bitsar.cookshareauthservice.controller;
+package com.bitsar.passwordlessauth.controller;
 
 import static org.mockito.Mockito.when;
 
-import com.bitsar.cookshareauthservice.dto.request.ConfirmRegisterRequestDto;
-import com.bitsar.cookshareauthservice.dto.request.RegisterRequestDto;
-import com.bitsar.cookshareauthservice.dto.response.ConfirmLoginResponseDto;
-import com.bitsar.cookshareauthservice.dto.response.ConfirmRegisterResponseDto;
-import com.bitsar.cookshareauthservice.dto.response.LoginResponseDto;
-import com.bitsar.cookshareauthservice.dto.response.RegisterResponseDto;
-import com.bitsar.cookshareauthservice.service.AuthService;
+import com.bitsar.passwordlessauth.dto.request.ConfirmRegisterRequestDto;
+import com.bitsar.passwordlessauth.dto.request.RegisterRequestDto;
+import com.bitsar.passwordlessauth.dto.response.ConfirmLoginResponseDto;
+import com.bitsar.passwordlessauth.dto.response.ConfirmRegisterResponseDto;
+import com.bitsar.passwordlessauth.dto.response.LoginResponseDto;
+import com.bitsar.passwordlessauth.dto.response.RegisterResponseDto;
+import com.bitsar.passwordlessauth.service.AuthService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
